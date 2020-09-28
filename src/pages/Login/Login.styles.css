@@ -45,3 +45,23 @@
   border: none;
   border-radius: 3px;
 }
+
+.justify-center {
+  text-align: center;
+}
+
+.loginpage {
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -3rem;
+}
+
+.loginpage h1 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+}

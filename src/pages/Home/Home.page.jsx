@@ -1,5 +1,12 @@
 import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Switch, Route, Link, useHistory } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+
+import Header from '../../components/Header';
+
+import VideoDashboard from '../VideoDashboard';
+import VideoView from '../VideoView';
+import FavoriteVideos from '../FavoriteVideos';
 
 import { useAuth } from '../../providers/Auth';
 import './Home.styles.css';
@@ -16,21 +23,28 @@ function HomePage() {
   }
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
+    <section ref={sectionRef}>
       {authenticated ? (
         <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
+          <Header deAuthenticate={deAuthenticate} />
+          <Container>
+            <Switch>
+              <Route exact path="/home">
+                <VideoDashboard />
+              </Route>
+              <Route path="/home/favorites">
+                <FavoriteVideos />
+              </Route>
+              <Route path="/home/video/:id">
+                <VideoView />
+              </Route>
+            </Switch>
+          </Container>
         </>
       ) : (
-        <Link to="/login">let me in →</Link>
+        <div className="homepage">
+          <Link to="/login">let me in →</Link>
+        </div>
       )}
     </section>
   );
