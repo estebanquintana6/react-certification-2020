@@ -10,6 +10,10 @@ function Header({ deAuthenticate, authenticated }) {
     history.push('/home/favorites');
   };
 
+  const toLogin = () => {
+    history.push('/login');
+  };
+
   const toHome = () => {
     history.push('/home');
   };
@@ -21,7 +25,7 @@ function Header({ deAuthenticate, authenticated }) {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        {authenticated && (
+        {authenticated ? (
           <>
             <Nav className="mr-auto">
               <Nav.Link href="#" onClick={toFavorites}>
@@ -31,6 +35,15 @@ function Header({ deAuthenticate, authenticated }) {
             <Nav>
               <Nav.Link href="#" onClick={deAuthenticate}>
                 Logout
+              </Nav.Link>
+            </Nav>
+          </>
+        ) : (
+          <>
+            <Nav className="mr-auto" />
+            <Nav>
+              <Nav.Link href="#" onClick={toLogin}>
+                Login
               </Nav.Link>
             </Nav>
           </>
