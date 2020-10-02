@@ -24,28 +24,28 @@ function HomePage() {
 
   return (
     <section ref={sectionRef}>
-      {authenticated ? (
-        <>
-          <Header deAuthenticate={deAuthenticate} />
-          <Container>
-            <Switch>
-              <Route exact path="/home">
-                <VideoDashboard />
-              </Route>
-              <Route path="/home/favorites">
+      <>
+        <Header deAuthenticate={deAuthenticate} authenticated={authenticated} />
+        <Container>
+          <Switch>
+            <Route exact path="/home">
+              <VideoDashboard />
+            </Route>
+            <Route path="/home/favorites">
+              {authenticated ? (
                 <FavoriteVideos />
-              </Route>
-              <Route path="/home/video/:id">
-                <VideoView />
-              </Route>
-            </Switch>
-          </Container>
-        </>
-      ) : (
-        <div className="homepage">
-          <Link to="/login">let me in →</Link>
-        </div>
-      )}
+              ) : (
+                  <div className="homepage">
+                    <Link to="/login">let me in →</Link>
+                  </div>
+                )}
+            </Route>
+            <Route path="/home/video/:id">
+              <VideoView />
+            </Route>
+          </Switch>
+        </Container>
+      </>
     </section>
   );
 }

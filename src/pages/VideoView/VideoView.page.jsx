@@ -6,6 +6,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Button, Col, Row, Jumbotron } from 'react-bootstrap';
 
 import { useYoutube } from '../../providers/Video';
+import { useAuth } from '../../providers/Auth';
+
 import { getRelatedVideos, getVideoById } from '../../api/youtube/youtube.api';
 
 function VideoView() {
@@ -17,6 +19,7 @@ function VideoView() {
   const [relatedVideos, setRelatedVideos] = useState(null);
   const [favoriteAlready, setFavoriteAlready] = useState(false);
   const { state, addToFavorites } = useYoutube();
+  const { authenticated } = useAuth();
   const { videos, favorites } = state;
 
   const toVideoPage = (videoId) => {
@@ -57,7 +60,7 @@ function VideoView() {
           <Row className="mt-4 mb-4 justify-content-center">
             <h3>{video.snippet.title}</h3>
           </Row>
-          {!favoriteAlready && (
+          {!favoriteAlready && authenticated && (
             <Row className="mt-4 mb-4 justify-content-center">
               <Button variant="info" onClick={() => addToFavorites(video)}>
                 ADD TO FAVORITES

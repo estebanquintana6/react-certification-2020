@@ -25,7 +25,10 @@ function useYoutube() {
 }
 
 function YoutubeProvider({ children }) {
-  const [state, dispatch] = useReducer(YoutubeReducer, null);
+  const [state, dispatch] = useReducer(YoutubeReducer, {
+    videos: [],
+    favorites: [],
+  });
 
   useEffect(() => {
     const storedState = storage.get(STATE_STORAGE) || null;
