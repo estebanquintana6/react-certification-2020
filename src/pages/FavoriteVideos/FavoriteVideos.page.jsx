@@ -8,13 +8,12 @@ function FavoriteVideos() {
   const history = useHistory();
 
   const { state, clearFavorites, removeFromFavorites } = useYoutube();
+
   const { favorites } = state;
 
   const toVideoView = (id) => {
     history.push(`/home/video/${id}`);
   };
-
-  console.log(favorites);
 
   return (
     <>

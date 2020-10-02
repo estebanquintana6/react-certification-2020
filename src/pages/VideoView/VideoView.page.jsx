@@ -15,8 +15,9 @@ function VideoView() {
 
   const [video, setVideo] = useState(null);
   const [relatedVideos, setRelatedVideos] = useState(null);
+  const [favoriteAlready, setFavoriteAlready] = useState(false);
   const { state, addToFavorites } = useYoutube();
-  const { videos } = state;
+  const { videos, favorites } = state;
 
   const toVideoPage = (videoId) => {
     history.push(`/home/video/${videoId}`);
@@ -41,6 +42,10 @@ function VideoView() {
       }
     };
 
+    const aux = favorites.find((favorite) => id === favorite.id);
+    if (aux) setFavoriteAlready(true);
+    else setFavoriteAlready(false);
+
     fetchVideo();
     fetchRelatedVideos();
   }, [videos, id]);
@@ -52,11 +57,13 @@ function VideoView() {
           <Row className="mt-4 mb-4 justify-content-center">
             <h3>{video.snippet.title}</h3>
           </Row>
-          <Row className="mt-4 mb-4 justify-content-center">
-            <Button variant="info" onClick={() => addToFavorites(video)}>
-              ADD TO FAVORITES
-            </Button>
-          </Row>
+          {!favoriteAlready && (
+            <Row className="mt-4 mb-4 justify-content-center">
+              <Button variant="info" onClick={() => addToFavorites(video)}>
+                ADD TO FAVORITES
+              </Button>
+            </Row>
+          )}
           <Row className="mt-2 mb-4">
             <Col md={9} style={{ height: '450pt' }}>
               <div style={{ height: '100%' }}>
@@ -90,6 +97,13 @@ function VideoView() {
                     </Col>
                   </Row>
                 ))}
+              </Jumbotron>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Jumbotron>
+                <p>{video.snippet.description}</p>
               </Jumbotron>
             </Col>
           </Row>

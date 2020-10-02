@@ -24,9 +24,10 @@ const YoutubeReducer = (state, action) => {
       return result;
     }
     case ADD_TO_FAVORITES: {
+      const favorites = [...state.favorites, action.payload];
       const result = {
         ...state,
-        favorites: [...state.favorites, action.payload],
+        favorites: [...new Set(favorites)],
       };
       storage.set(STATE_STORAGE, result);
       return result;

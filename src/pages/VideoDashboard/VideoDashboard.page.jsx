@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Card, Col, Form, Jumbotron, Row } from 'react-bootstrap';
+import { Button, Card, Col, Form, Jumbotron, Row } from 'react-bootstrap';
 
 import { useYoutube } from '../../providers/Video';
 
@@ -20,6 +20,9 @@ function VideoDashboard() {
 
   const handleInputChange = async (e) => {
     setQuery(e.target.value);
+  };
+
+  const handleSearchButton = async () => {
     await getVideos();
   };
 
@@ -42,13 +45,24 @@ function VideoDashboard() {
         <Col>
           <Jumbotron style={{ padding: '1rem 2rem' }}>
             <Form>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Search something cool!</Form.Label>
-                <Form.Control
-                  placeholder="Type something..."
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
+              <Row>
+                <Form.Group as={Col} md={10} controlId="formBasicEmail">
+                  <Form.Label>Search something cool!</Form.Label>
+                  <Form.Control
+                    placeholder="Type something..."
+                    onChange={handleInputChange}
+                  />
+                </Form.Group>
+                <Col md={2}>
+                  <Button
+                    variant="info"
+                    className="mt-4 p-3"
+                    onClick={handleSearchButton}
+                  >
+                    Search
+                  </Button>
+                </Col>
+              </Row>
             </Form>
           </Jumbotron>
         </Col>
