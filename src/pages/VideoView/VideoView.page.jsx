@@ -31,18 +31,14 @@ function VideoView() {
       try {
         const response = await getRelatedVideos(id);
         setRelatedVideos(response.data.items);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
 
     const fetchVideo = async () => {
       try {
         const response = await getVideoById(id);
         setVideo(response.data.items[0]);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
 
     const aux = favorites.find((favorite) => id === favorite.id);
