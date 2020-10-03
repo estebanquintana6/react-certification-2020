@@ -1,11 +1,7 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 
-import { useHistory } from 'react-router-dom';
-
-function Header({ deAuthenticate, authenticated }) {
-  const history = useHistory();
-
+function Header({ history, deAuthenticate, authenticated }) {
   const toFavorites = () => {
     history.push('/home/favorites');
   };
@@ -24,16 +20,16 @@ function Header({ deAuthenticate, authenticated }) {
         Esteban&apos;s challange
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar.Collapse id="responsive-navbar-nav" data-testid="action-container">
         {authenticated ? (
           <>
             <Nav className="mr-auto">
-              <Nav.Link href="#" onClick={toFavorites}>
+              <Nav.Link href="#" onClick={toFavorites} data-testid="to-favorites-button">
                 My favorites
               </Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#" onClick={deAuthenticate}>
+              <Nav.Link href="#" onClick={deAuthenticate} data-testid="logout-button">
                 Logout
               </Nav.Link>
             </Nav>
@@ -42,7 +38,7 @@ function Header({ deAuthenticate, authenticated }) {
           <>
             <Nav className="mr-auto" />
             <Nav>
-              <Nav.Link href="#" onClick={toLogin}>
+              <Nav.Link href="#" onClick={toLogin} data-testid="login-button">
                 Login
               </Nav.Link>
             </Nav>

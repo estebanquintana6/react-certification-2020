@@ -19,7 +19,7 @@ const YoutubeContext = React.createContext(null);
 function useYoutube() {
   const context = useContext(YoutubeContext);
   if (!context) {
-    throw new Error(`cannot use this without a VideoProvider`);
+    throw new Error(`cannot use this without a YoutubeProvider`);
   }
   return context;
 }
@@ -64,7 +64,7 @@ function YoutubeProvider({ children }) {
     <YoutubeContext.Provider
       value={{ addToFavorites, clearFavorites, removeFromFavorites, fetchVideos, state }}
     >
-      {children}
+      <div data-testid="youtube-provider">{children}</div>
     </YoutubeContext.Provider>
   );
 }

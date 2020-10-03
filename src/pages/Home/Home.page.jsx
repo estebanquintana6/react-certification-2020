@@ -25,7 +25,11 @@ function HomePage() {
   return (
     <section ref={sectionRef}>
       <>
-        <Header deAuthenticate={deAuthenticate} authenticated={authenticated} />
+        <Header
+          history={history}
+          deAuthenticate={deAuthenticate}
+          authenticated={authenticated}
+        />
         <Container>
           <Switch>
             <Route exact path="/home">
@@ -35,10 +39,10 @@ function HomePage() {
               {authenticated ? (
                 <FavoriteVideos />
               ) : (
-                  <div className="homepage">
-                    <Link to="/login">let me in →</Link>
-                  </div>
-                )}
+                <div className="homepage">
+                  <Link to="/login">let me in →</Link>
+                </div>
+              )}
             </Route>
             <Route path="/home/video/:id">
               <VideoView />

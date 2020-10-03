@@ -1,1 +1,1 @@
-export const youtubeApiKey = 'AIzaSyDNUlqF2AMPTcVPHw9DexuqKqpojA3ddVg';
+export const youtubeApiKey = 'AIzaSyDTSeBRSFjTNi-UVVuBFo_jR_7c5RTEcQs';
