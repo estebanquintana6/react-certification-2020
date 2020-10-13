@@ -34,7 +34,7 @@ function VideoDashboard() {
     if (videos.length === 0) {
       getVideos();
     }
-  });
+  }, []);
 
   return (
     <>
