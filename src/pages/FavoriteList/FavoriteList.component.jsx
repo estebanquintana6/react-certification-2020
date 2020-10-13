@@ -26,7 +26,7 @@ const FavoriteList = ({ favorites, removeFromFavorites, toVideoView }) => {
             </Card>
           </Col>
         );
-      })}{' '}
+      })}
     </Row>
   );
 };
